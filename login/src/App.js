@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import padlock from "./img/padlock.png";
+import logo from "./img/logo.png"
 
 import "./styles.css";
 
@@ -11,12 +13,12 @@ function App() {
   // User Login info
   const database = [
     {
-      username: "user1",
-      password: "pass1"
+      username: "admin",
+      password: "admin"
     },
     {
-      username: "user2",
-      password: "pass2"
+      username: "frank",
+      password: "12345"
     }
   ];
 
@@ -48,28 +50,26 @@ function App() {
     }
   };
 
-  // Generate JSX code for error message
+  // Error message
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (
       <div className="error">{errorMessages.message}</div>
     );
 
-  // JSX code for login form
+  //login form
   const renderForm = (
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label>Usuario</label>
-          <input type="text" name="uname" required />
+          <input type="text" name="uname" placeholder="Usuario" required />
           {renderErrorMessage("uname")}
         </div>
-        <div className="input-container">
-          <label>Contraseña</label>
-          <input type="password" name="pass" required />
+        <div className="input-container">    
+          <input type="password" name="pass" placeholder="Password" required />
           {renderErrorMessage("pass")}
         </div>
         <div className="button-container">
-          <input type="submit" />
+          <button type="submit" > Ingresar</button>
         </div>
       </form>
     </div>
@@ -77,9 +77,11 @@ function App() {
 
   return (
     <div className="app">
+      <div className="img-logo"><img src={logo}></img></div>
       <div className="login-form">
-        <div className="title">Login</div>
-        {isSubmitted ? <div>Te haz logeado correctamente</div> : renderForm}
+        <div className="title">Login Admin</div>
+        <div className="img-padlock"><img src={padlock}></img></div>
+        {isSubmitted ? <div className="greeting">Bienvenido!</div> : renderForm}
       </div>
     </div>
   );
